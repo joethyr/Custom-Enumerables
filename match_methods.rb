@@ -1,14 +1,15 @@
 require_relative 'custom_enumerables'
 
-numbers = [1, 2, 3, 4, 5]
+arr = [1, 2, 3, 4, 5]
 str_arr = %w[Mario Bowser Luigi Peach]
+hash1 = { 'a' => 1, 'b' => 2, 'c' => 3 }
 
 puts "my_each vs. each"
-numbers.my_each  { |item| puts item }
-{ 'a' => 1, 'b' => 2 }.my_each { |k, v| puts "#{k}, #{v}" }
+arr.my_each  { |item| puts item }
+hash1.my_each { |k, v| puts "#{k}, #{v}" }
 puts "\n"
-numbers.each  { |item| puts item }
-{ 'a' => 1, 'b' => 2 }.each { |k, v| puts "#{k}, #{v}" }
+arr.each  { |item| puts item }
+hash1.each { |k, v| puts "#{k}, #{v}" }
 puts "\n"
 
 puts 'my_each_with_index vs each_with_index'
@@ -17,4 +18,13 @@ str_arr.my_each_with_index { |item, index|
 puts "\n"
 str_arr.each_with_index { |item, index|
   puts "#{item}: #{index}"}
+puts "\n"
+
+puts 'my_select vs select'
+p arr.my_select { |item| item.even? }
+p hash1.my_select { |_, v| v > 1 }
+puts "\n"
+p arr.select { |item| item.even? }
+p hash1.select { |_, v| v > 1 }
+
 puts "\n"

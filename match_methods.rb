@@ -1,8 +1,10 @@
 require_relative 'custom_enumerables'
 
 arr = [1, 2, 3, 4, 5]
+arr2 = [1, 2, 2, 2, 4, 4]
 str_arr = %w[Mario Bowser Luigi Peach]
 hash1 = { 'a' => 1, 'b' => 2, 'c' => 3 }
+hash1 = { 'a' => 1, 'b' => 1, 'c' => 1, 'd' => 4 }
 
 puts "my_each vs. each"
 arr.my_each  { |item| puts item }
@@ -50,4 +52,11 @@ p hash1.my_none? { |_, v| v >= 2 }
 puts "\n"
 p arr.none? { |i| i > 6 }
 p hash1.none? { |_, v| v >= 2 }
+puts "\n"
+
+puts 'my_count vs count'
+puts arr2.my_count(&:even?)
+puts "\n"
+p arr2.count(2)
+p arr2.count(4)
 puts "\n"

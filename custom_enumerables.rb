@@ -44,7 +44,32 @@ module Enumerable
       self.my_each { |k, v| return false unless block.call(k, v) }
       true
     end
+  end
 
+  def my_any?(&block)
+    return to_enum(:my_any?) unless block_given?
+
+    case self
+    in Array
+      self.my_each { |item| return true while block.call(item) }
+      false
+    in Hash
+      self.my_each { |k, v| return true while block.call(k, v) }
+      false
+    end
+  end
+
+  def my_none?(&block)
+    return to_enum(:my_none?) unless block_given?
+
+    case self
+    in Array
+      self.my_each { |item| return false while block.call(item) }
+      true
+    in Hash
+      self.my_each { |k, v| return false while block.call(k, v) }
+      true
+    end
   end
 end
 

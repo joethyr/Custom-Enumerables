@@ -36,3 +36,18 @@ p arr.all?(&:even?)
 p hash1.all? { |_, v| v >= 1 }
 puts "\n"
 
+puts 'my_any? vs any?'
+p arr.my_any? { |i| i > 6 }
+p hash1.my_any? { |_, v| v >= 2 }
+puts "\n"
+p arr.any? { |i| i > 6 }
+p hash1.any? { |_, v| v >= 2 }
+puts "\n"
+
+puts 'my_none? vs none?'
+p arr.my_none? { |i| i > 6 }
+p hash1.my_none? { |_, v| v >= 2 }
+puts "\n"
+p arr.none? { |i| i > 6 }
+p hash1.none? { |_, v| v >= 2 }
+puts "\n"

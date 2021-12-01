@@ -26,5 +26,13 @@ p hash1.my_select { |_, v| v > 1 }
 puts "\n"
 p arr.select { |item| item.even? }
 p hash1.select { |_, v| v > 1 }
-
 puts "\n"
+
+puts 'my_all? vs all?'
+p arr.my_all?(&:even?)
+p hash1.my_all? { |_, v| v >= 1 }
+puts "\n"
+p arr.all?(&:even?)
+p hash1.all? { |_, v| v >= 1 }
+puts "\n"
+

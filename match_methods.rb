@@ -1,6 +1,6 @@
 require_relative 'custom_enumerables'
 
-arr = [1, 2, 3, 4, 5]
+arr = [1, 2, 3, 7, 5]
 arr2 = [2, 2, 2, 4, 4]
 str_arr = %w[Mario Bowser Luigi Peach]
 hash1 = { 'a' => 1, 'b' => 2, 'c' => 3 }
@@ -39,14 +39,18 @@ p arr2.all?(&:even?)
 puts "\n"
 
 puts 'my_any? vs any?'
+p arr.my_any?(5)
 p arr.my_any? { |i| i > 6 }
 puts "\n"
+p arr.any?(5)
 p arr.any? { |i| i > 6 }
 puts "\n"
 
 puts 'my_none? vs none?'
-p arr.my_none? { |i| i > 6 }
+p arr.TEST_my_none?(9)
+p arr.TEST_my_none? { |i| i > 6 }
 puts "\n"
+p arr.none?(9)
 p arr.none? { |i| i > 6 }
 puts "\n"
 

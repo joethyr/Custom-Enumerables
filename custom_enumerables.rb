@@ -44,17 +44,15 @@ module Enumerable
     true
   end
 
-  def my_any?
-    return to_enum(:my_any?) unless block_given?
-
-    case self
-    in Array
+  def my_any?(pattern = nil)
+    if block_given?
       self.my_each { |item| return true while yield(item) }
-      false
-    in Hash
-      self.my_each { |k, v| return true while yield(k, v) }
-      false
+    elsif pattern
+      self.my_each { |item| return true while pattern === item }
+    else
+      self.my_each { |item| return true while item }
     end
+    false
   end
 
   def my_none?
@@ -68,6 +66,17 @@ module Enumerable
       self.my_each { |k, v| return false while yield(k, v) }
       true
     end
+  end
+
+  def TEST_my_none?(pattern = nil)
+    if block_given?
+      self.my_each { |item| return false while yield(item) }
+    elsif pattern
+      self.my_each { |item| return false while pattern === item }
+    else
+      self.my_each { |item| return false while item }
+    end
+    true
   end
 
   def my_count

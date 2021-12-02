@@ -3,8 +3,7 @@ require_relative 'custom_enumerables'
 arr = [1, 2, 3, 7, 5]
 arr2 = [2, 2, 2, 4, 4]
 str_arr = %w[Mario Bowser Luigi Peach]
-hash1 = { 'a' => 1, 'b' => 2, 'c' => 3 }
-hash1 = { 'a' => 1, 'b' => 1, 'c' => 1, 'd' => 4 }
+hash1 = { 'a' => 1, 'b' => 1, 'c' => 3, 'd' => 4 }
 
 puts "my_each vs. each"
 arr.my_each  { |item| puts item }
@@ -61,3 +60,12 @@ puts "\n"
 p arr.count(&:odd?)
 p arr2.count(4)
 puts "\n"
+
+puts 'my_map vs map'
+p arr.my_map { |item| item * 2 }
+p arr.my_map(&:even?)
+# puts "\n"
+p arr.map { |item| item * 2 }
+p arr.map(&:even?)
+puts "\n"
+

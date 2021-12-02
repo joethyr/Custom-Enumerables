@@ -75,4 +75,12 @@ module Enumerable
     end
     count
   end
+
+  def my_map
+    return to_enum(:my_map) unless block_given?
+
+    arr = []
+    self.my_each { |item| arr.push(yield(item)) }
+    arr
+  end
 end

@@ -47,16 +47,17 @@ p arr.any? { |i| i > 6 }
 puts "\n"
 
 puts 'my_none? vs none?'
-p arr.TEST_my_none?(9)
-p arr.TEST_my_none? { |i| i > 6 }
+p arr.my_none?(9)
+p arr.my_none? { |i| i > 6 }
 puts "\n"
 p arr.none?(9)
 p arr.none? { |i| i > 6 }
 puts "\n"
 
 puts 'my_count vs count'
-puts arr2.my_count(&:even?)
+puts arr.my_count(&:odd?)
+p arr2.my_count(4)
 puts "\n"
-p arr2.count(2)
+p arr.count(&:odd?)
 p arr2.count(4)
 puts "\n"

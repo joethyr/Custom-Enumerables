@@ -37,7 +37,7 @@ module Enumerable
     if block_given?
       self.my_each { |item| return false unless yield(item) }
     elsif pattern
-      self.my_each { |item| return false unless pattern === item }
+      self.my_each { |item| return false unless pattern == item }
     else
       self.my_each { |item| return false unless item }
     end
@@ -48,43 +48,31 @@ module Enumerable
     if block_given?
       self.my_each { |item| return true while yield(item) }
     elsif pattern
-      self.my_each { |item| return true while pattern === item }
+      self.my_each { |item| return true while pattern == item }
     else
       self.my_each { |item| return true while item }
     end
     false
   end
 
-  def my_none?
-    return to_enum(:my_none?) unless block_given?
-
-    case self
-    in Array
-      self.my_each { |item| return false while yield(item) }
-      true
-    in Hash
-      self.my_each { |k, v| return false while yield(k, v) }
-      true
-    end
-  end
-
-  def TEST_my_none?(pattern = nil)
+  def my_none?(pattern = nil)
     if block_given?
       self.my_each { |item| return false while yield(item) }
     elsif pattern
-      self.my_each { |item| return false while pattern === item }
+      self.my_each { |item| return false while pattern == item }
     else
       self.my_each { |item| return false while item }
     end
     true
   end
 
-  def my_count
-    return to_enum(:my_count) unless block_given?
-
+  def my_count(pattern = nil)
     count = 0
-    self.my_each { |i| count += 1 if yield(i) }
+    if block_given?
+      self.my_each { |item| count += 1 if yield(item) }
+    elsif pattern
+      self.my_each { |item| count +=1 if pattern == item}
+    end
     count
   end
 end
-

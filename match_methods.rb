@@ -69,3 +69,15 @@ p arr.map { |item| item * 2 }
 p arr.map(&:even?)
 puts "\n"
 
+puts "my_inject vs inject"
+p arr.my_inject { |sum, n| sum * n }
+puts "\n"
+p arr.inject { |sum, n| sum * n }
+puts "\n"
+
+def multiply_els(arr)
+  arr.my_inject {|sum, n| sum*n}
+end
+puts "multiply_els"
+p multiply_els([2, 4, 5])
+puts "\n"

@@ -83,4 +83,15 @@ module Enumerable
     self.my_each { |item| arr.push(yield(item)) }
     arr
   end
+
+  def my_inject(pattern = nil)
+    self.size.times do |index|
+      if pattern == nil && index == 0
+        pattern = self[index]
+        next
+      end
+      pattern = yield pattern, self[index]
+    end
+    pattern
+  end
 end

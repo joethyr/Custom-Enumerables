@@ -33,17 +33,15 @@ module Enumerable
     end
   end
 
-  def my_all?
-    return to_enum(:my_all?) unless block_given?
-
-    case self
-    in Array
+  def my_all?(pattern = nil)
+    if block_given?
       self.my_each { |item| return false unless yield(item) }
-      true
-    in Hash
-      self.my_each { |k, v| return false unless yield(k, v) }
-      true
+    elsif pattern
+      self.my_each { |item| return false unless pattern === item }
+    else
+      self.my_each { |item| return false unless item }
     end
+    true
   end
 
   def my_any?

@@ -1,7 +1,7 @@
 require_relative 'custom_enumerables'
 
 arr = [1, 2, 3, 4, 5]
-arr2 = [1, 2, 2, 2, 4, 4]
+arr2 = [2, 2, 2, 4, 4]
 str_arr = %w[Mario Bowser Luigi Peach]
 hash1 = { 'a' => 1, 'b' => 2, 'c' => 3 }
 hash1 = { 'a' => 1, 'b' => 1, 'c' => 1, 'd' => 4 }
@@ -31,27 +31,23 @@ p hash1.select { |_, v| v > 1 }
 puts "\n"
 
 puts 'my_all? vs all?'
-p arr.my_all?(&:even?)
-p hash1.my_all? { |_, v| v >= 1 }
+p arr2.my_all?(2)
+p arr2.my_all?(&:even?)
 puts "\n"
-p arr.all?(&:even?)
-p hash1.all? { |_, v| v >= 1 }
+p arr2.all?(2)
+p arr2.all?(&:even?)
 puts "\n"
 
 puts 'my_any? vs any?'
 p arr.my_any? { |i| i > 6 }
-p hash1.my_any? { |_, v| v >= 2 }
 puts "\n"
 p arr.any? { |i| i > 6 }
-p hash1.any? { |_, v| v >= 2 }
 puts "\n"
 
 puts 'my_none? vs none?'
 p arr.my_none? { |i| i > 6 }
-p hash1.my_none? { |_, v| v >= 2 }
 puts "\n"
 p arr.none? { |i| i > 6 }
-p hash1.none? { |_, v| v >= 2 }
 puts "\n"
 
 puts 'my_count vs count'

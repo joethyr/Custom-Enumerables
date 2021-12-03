@@ -64,7 +64,11 @@ puts "\n"
 puts 'my_map vs map'
 p arr.my_map { |item| item * 2 }
 p arr.my_map(&:even?)
-# puts "\n"
+my_proc = proc { |value| value * 5 }
+p arr.my_map(my_proc)
+my_proc = proc(&:even?)
+p arr.my_map(my_proc)
+puts "\n"
 p arr.map { |item| item * 2 }
 p arr.map(&:even?)
 puts "\n"

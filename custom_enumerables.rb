@@ -84,6 +84,17 @@ module Enumerable
     arr
   end
 
+   def my_map(my_proc = nil)
+    arr = []
+    if my_proc
+       self.my_each { |item| arr.push(my_proc.call(item)) }
+      return arr
+    end
+    self.my_each { |item| arr.push(yield item) }
+    arr
+  end
+
+
   def my_inject(pattern = nil)
     self.size.times do |index|
       if pattern == nil && index == 0
